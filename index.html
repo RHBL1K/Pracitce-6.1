@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Practice Tasks</h1>
+
+    <section>
+        <h2>1. Multiplication and Division</h2>
+        <label>1st Number:</label>
+        <input type="number" id="num1_task1" placeholder="Enter first number">
+        <label>2nd Number:</label>
+        <input type="number" id="num2_task1" placeholder="Enter second number">
+        <button onclick="calculateTask1('multiply')">Multiply</button>
+        <button onclick="calculateTask1('divide')">Divide</button>
+        <div id="result_task1" class="result"></div>
+    </section>
+
+    <section>
+        <h2>2. Find the Largest of Three Numbers</h2>
+        <label>1st Number:</label>
+        <input type="number" id="num1_task2" placeholder="Enter first number">
+        <label>2nd Number:</label>
+        <input type="number" id="num2_task2" placeholder="Enter second number">
+        <label>3rd Number:</label>
+        <input type="number" id="num3_task2" placeholder="Enter third number">
+        <button onclick="findLargestTask2()">Find Largest</button>
+        <div id="result_task2" class="result"></div>
+    </section>
+
+    <section>
+        <h2>3. Sum or Triple Sum</h2>
+        <label>1st Number:</label>
+        <input type="number" id="num1_task3" placeholder="Enter first number">
+        <label>2nd Number:</label>
+        <input type="number" id="num2_task3" placeholder="Enter second number">
+        <button onclick="sumTripleTask3()">Calculate</button>
+        <div id="result_task3" class="result"></div>
+    </section>
+
+    <section>
+        <h2>4. Closest to 100</h2>
+        <label>1st Number:</label>
+        <input type="number" id="num1_task4" placeholder="Enter first number">
+        <label>2nd Number:</label>
+        <input type="number" id="num2_task4" placeholder="Enter second number">
+        <button onclick="closestTo100Task4()">Find Closest</button>
+        <div id="result_task4" class="result"></div>
+    </section>
+
+    <section>
+        <h2>5. Extract First Half of a String</h2>
+        <label>Enter String:</label>
+        <input type="text" id="string_task5" placeholder="Enter string">
+        <button onclick="firstHalfTask5()">Extract</button>
+        <div id="result_task5" class="result"></div>
+    </section>
+
+    <script>
+        function calculateTask1(operation) {
+            const num1 = parseFloat(document.getElementById('num1_task1').value);
+            const num2 = parseFloat(document.getElementById('num2_task1').value);
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = "Please enter valid numbers.";
+            } else {
+                if (operation === 'multiply') {
+                    result = `${num1} X ${num2} = ${num1 * num2}`;
+                } else if (operation === 'divide') {
+                    if (num2 !== 0) {
+                        result = `${num1} ÷ ${num2} = ${num1 / num2}`;
+                    } else {
+                        result = "Division by zero is not allowed.";
+                    }
+                }
+            }
+            document.getElementById('result_task1').textContent = result;
+        }
+
+        function findLargestTask2() {
+            const num1 = parseFloat(document.getElementById('num1_task2').value);
+            const num2 = parseFloat(document.getElementById('num2_task2').value);
+            const num3 = parseFloat(document.getElementById('num3_task2').value);
+
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                document.getElementById('result_task2').textContent = "Please enter valid numbers.";
+                return;
+            }
+
+            const largest = Math.max(num1, num2, num3);
+            document.getElementById('result_task2').textContent = `The largest number is: ${largest}`;
+        }
+
+        function sumTripleTask3() {
+            const num1 = parseFloat(document.getElementById('num1_task3').value);
+            const num2 = parseFloat(document.getElementById('num2_task3').value);
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = "Please enter valid numbers.";
+            } else {
+                result = (num1 === num2) ? 3 * (num1 + num2) : (num1 + num2);
+            }
+
+            document.getElementById('result_task3').textContent = `Result: ${result}`;
+        }
+
+        function closestTo100Task4() {
+            const num1 = parseFloat(document.getElementById('num1_task4').value);
+            const num2 = parseFloat(document.getElementById('num2_task4').value);
+            let closest;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                closest = "Please enter valid numbers.";
+            } else {
+                closest = (Math.abs(100 - num1) < Math.abs(100 - num2)) ? num1 : num2;
+            }
+
+            document.getElementById('result_task4').textContent = `Closest to 100: ${closest}`;
+        }
+
+        function firstHalfTask5() {
+            const str = document.getElementById('string_task5').value;
+
+     
+            if (str.length % 2 === 1) {
+                document.getElementById('result_task5').textContent = "False"; 
+            } else {
+                const half = str.substring(0, str.length / 2);
+                document.getElementById('result_task5').textContent = `First half: ${half}`; 
+            }
+        }
+    </script>
+</body>
+</html>
+
